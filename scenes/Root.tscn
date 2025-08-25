@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://lwk21bgyu8g1"]
+
+[ext_resource type="PackedScene" uid="uid://dnnka5th1gldj" path="res://scenes/Dialog.tscn" id="1_1bxvr"]
+[ext_resource type="Script" uid="uid://c55jcsmfwvrfs" path="res://scripts/root.gd" id="1_m7djw"]
+
+[node name="Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m7djw")
+
+[node name="Control" parent="." instance=ExtResource("1_1bxvr")]
+layout_mode = 1
