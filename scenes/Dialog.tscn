@@ -1,13 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnnka5th1gldj"]
+[gd_scene load_steps=3 format=3 uid="uid://dnnka5th1gldj"]
 
-[ext_resource type="FontFile" uid="uid://c42lwm6ec4n06" path="res://Minecraft.ttf" id="1_ecvbg"]
+[ext_resource type="LabelSettings" uid="uid://dk2wkwyjhrjcg" path="res://font.tres" id="2_eoslh"]
 [ext_resource type="Script" uid="uid://ckjiwi3qsva5j" path="res://scripts/dialog.gd" id="2_nfiha"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_w8un3"]
-font = ExtResource("1_ecvbg")
-font_size = 32
-
-[node name="Control" type="Control"]
+[node name="Dialog" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,6 +44,5 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-text = "asdfasdfasdfsadfa asfdasdfasdf"
-label_settings = SubResource("LabelSettings_w8un3")
+label_settings = ExtResource("2_eoslh")
 autowrap_mode = 2
