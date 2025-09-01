@@ -24,7 +24,7 @@ func _ready():
 			var tween = create_tween()
 			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.set_trans(Tween.TRANS_EXPO)
-			tween.tween_property($Panel/ProgressBar, "value", 100, 5)
+			tween.tween_property($Panel/ProgressBar, "value", 100, 3)
 			await tween.finished
 			$Panel/Downloads.hide()
 			$Panel/ProgressBar.hide()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6e85mo505ud1"]
+[gd_scene load_steps=13 format=3 uid="uid://c6e85mo505ud1"]
 
 [ext_resource type="FontFile" uid="uid://c42lwm6ec4n06" path="res://Minecraft.ttf" id="1_ibkli"]
 [ext_resource type="Script" uid="uid://cllhm2ckcrbdb" path="res://scenes/game.gd" id="1_s0nni"]
 [ext_resource type="StyleBox" uid="uid://cons8p27lgekx" path="res://start.tres" id="2_qbsmt"]
 [ext_resource type="AudioStream" uid="uid://cfyvi4elmnnqw" path="res://assets/bgmusic.mp3" id="3_cpr0p"]
 [ext_resource type="AudioStream" uid="uid://cmccnl5c7xouu" path="res://assets/Woosh.mp3" id="4_aug50"]
+[ext_resource type="Texture2D" uid="uid://d1if1hm2tbcxw" path="res://images/energy.png" id="6_aug50"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbsmt"]
 bg_color = Color(1, 0.303947, 0.197165, 1)
@@ -12,6 +13,30 @@ bg_color = Color(1, 0.303947, 0.197165, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_qbsmt"]
 font = ExtResource("1_ibkli")
 font_size = 208
+
+[sub_resource type="LabelSettings" id="LabelSettings_s0nni"]
+font = ExtResource("1_ibkli")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_aug50"]
+font = ExtResource("1_ibkli")
+font_size = 192
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kiw3p"]
+bg_color = Color(0.31802, 0.31802, 0.31802, 0.501961)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.874797, 0.819601, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_kiw3p"]
+font = ExtResource("1_ibkli")
+font_size = 96
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -35,8 +60,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_qbsmt")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 150.0
-offset_bottom = 569.0
+offset_top = 175.0
+offset_bottom = 594.0
 grow_horizontal = 2
 text = "Welcome to
 Shaid Radow Clicker"
@@ -44,7 +69,7 @@ label_settings = SubResource("LabelSettings_qbsmt")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="Start" type="Button" parent="."]
+[node name="Click" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -65,7 +90,7 @@ theme_override_styles/hover_pressed = ExtResource("2_qbsmt")
 theme_override_styles/hover = ExtResource("2_qbsmt")
 theme_override_styles/pressed = ExtResource("2_qbsmt")
 theme_override_styles/normal = ExtResource("2_qbsmt")
-text = "Start"
+text = "Press"
 
 [node name="Whoosh" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_aug50")
@@ -74,3 +99,72 @@ volume_db = 18.11
 [node name="Background" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_cpr0p")
 parameters/looping = true
+
+[node name="NOTSPON" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "#notspon"
+label_settings = SubResource("LabelSettings_s0nni")
+
+[node name="Counter" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0"
+label_settings = SubResource("LabelSettings_aug50")
+
+[node name="EnergyBackground" type="Panel" parent="."]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 615.0
+offset_bottom = 165.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kiw3p")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 615.0
+offset_bottom = 165.0
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/AspectRatioContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+texture = ExtResource("6_aug50")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 5
+
+[node name="Energy" type="Label" parent="HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "5"
+label_settings = SubResource("LabelSettings_kiw3p")
+horizontal_alignment = 1
+vertical_alignment = 2

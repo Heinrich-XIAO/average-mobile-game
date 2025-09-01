@@ -13,6 +13,7 @@ func _ready():
 	Globals.connect("debt_changed", self._debt_changed)
 	Globals.connect("bought_game", self._game_starts)
 	
+	
 	var dialog = $Dialog
 	var image: CompressedTexture2D = load("res://images/shiba_bank.png")
 	await dialog.send_multiple_dialogs(["Thank you for opening your credit card with Shiba bank.",\

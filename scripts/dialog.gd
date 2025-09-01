@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 var dialog_image: TextureRect = null
 var dialog_label: Label = null
@@ -22,8 +22,10 @@ func close_dialog():
 	panel.hide()
 
 func send_dialog(text, pfp):
+	self.show()
 	dialog_image.texture = pfp
 	is_going_brrr = true
+	$TypingSFX.play()
 	var current_text: String = ""
 	for i in range(len(text)):
 		while current_text.ends_with("\u3000"):
@@ -38,10 +40,15 @@ func send_dialog(text, pfp):
 		await get_tree().create_timer(0.02).timeout
 		if not is_going_brrr:
 			dialog_label.text = text
+			$TypingSFX.stop()
 			break
 	is_going_brrr = false
+	$TypingSFX.stop()
+
 	
-func send_multiple_dialogs(texts: Array, pfp, callback: Callable):
+func send_multiple_dialogs(texts: Array, pfp, callback: Callable = func (): pass):
+	panel.show()
+	print("adsf")
 	for i in range(len(texts)):
 		var text = texts[i]
 		if i < len(texts) - 1:
@@ -54,6 +61,8 @@ func send_multiple_dialogs(texts: Array, pfp, callback: Callable):
 	next_callback = callback
 
 func _ready():
+	Globals.connect("send_dialog_signal", self.send_multiple_dialogs)
+
 	dialog_image = $PanelContainer/MarginContainer/HBoxContainer/TextureRect
 	dialog_label = $PanelContainer/MarginContainer/HBoxContainer/Label
 	panel = $PanelContainer
