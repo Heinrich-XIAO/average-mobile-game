@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://hq11htdx2j7y"]
+
+[ext_resource type="FontFile" uid="uid://c42lwm6ec4n06" path="res://Minecraft.ttf" id="1_lvxhx"]
+
+[resource]
+line_spacing = 0.0
+font = ExtResource("1_lvxhx")

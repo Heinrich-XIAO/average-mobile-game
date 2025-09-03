@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6e85mo505ud1"]
+[gd_scene load_steps=28 format=3 uid="uid://c6e85mo505ud1"]
 
 [ext_resource type="FontFile" uid="uid://c42lwm6ec4n06" path="res://Minecraft.ttf" id="1_ibkli"]
 [ext_resource type="Script" uid="uid://cllhm2ckcrbdb" path="res://scenes/game.gd" id="1_s0nni"]
@@ -6,6 +6,15 @@
 [ext_resource type="AudioStream" uid="uid://cfyvi4elmnnqw" path="res://assets/bgmusic.mp3" id="3_cpr0p"]
 [ext_resource type="AudioStream" uid="uid://cmccnl5c7xouu" path="res://assets/Woosh.mp3" id="4_aug50"]
 [ext_resource type="Texture2D" uid="uid://d1if1hm2tbcxw" path="res://images/energy.png" id="6_aug50"]
+[ext_resource type="Texture2D" uid="uid://b4xh8boa3hk80" path="res://images/chest.png" id="7_kiw3p"]
+[ext_resource type="Texture2D" uid="uid://cmik53j7cupct" path="res://images/arrow_down.png" id="8_g4kob"]
+[ext_resource type="Texture2D" uid="uid://dkbvguf20jox5" path="res://images/arrow_right.png" id="9_qy1jj"]
+[ext_resource type="Texture2D" uid="uid://b0311k7key3jm" path="res://images/keyframe_2.png" id="10_qy1jj"]
+[ext_resource type="Texture2D" uid="uid://cu4afplasjtym" path="res://images/keyframe_3.png" id="11_2rd6h"]
+[ext_resource type="Texture2D" uid="uid://mgd4r8dkoyfo" path="res://images/keyframe_4.png" id="12_7ua8r"]
+[ext_resource type="Texture2D" uid="uid://bc7tb1k103r83" path="res://images/keyframe_5.png" id="13_r7sob"]
+[ext_resource type="LabelSettings" uid="uid://hq11htdx2j7y" path="res://popup.tres" id="14_7ua8r"]
+[ext_resource type="StyleBox" uid="uid://i8wxiocywuwd" path="res://scenes/okay.tres" id="15_r7sob"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbsmt"]
 bg_color = Color(1, 0.303947, 0.197165, 1)
@@ -13,6 +22,10 @@ bg_color = Color(1, 0.303947, 0.197165, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_qbsmt"]
 font = ExtResource("1_ibkli")
 font_size = 208
+
+[sub_resource type="LabelSettings" id="LabelSettings_y5y3l"]
+font = ExtResource("1_ibkli")
+font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_s0nni"]
 font = ExtResource("1_ibkli")
@@ -37,6 +50,328 @@ corner_radius_bottom_left = 50
 [sub_resource type="LabelSettings" id="LabelSettings_kiw3p"]
 font = ExtResource("1_ibkli")
 font_size = 96
+
+[sub_resource type="Animation" id="Animation_qy1jj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32, -32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(96, -32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(224, -32)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../LootboxPopup/TextureRect:custom_minimum_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 576)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../LootboxPopup/TextureRect:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_qy1jj")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../LootboxPopup/TextureRect:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1088, 584)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../LootboxPopup/Item:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../LootboxPopup/YouGotALabel:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../LootboxPopup/YouGotALabel:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(902, 636.5)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../LootboxPopup/OK:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../LootboxPopup/TextureRect:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_g4kob"]
+resource_name = "arrows_moving"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-32, -32), Vector2(-64, -64), Vector2(-32, -32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect2:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(96, -32), Vector2(96, -77.255), Vector2(96, -32)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect3:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(224, -32), Vector2(256, -64), Vector2(227.97, -32)]
+}
+
+[sub_resource type="Animation" id="Animation_3xj3m"]
+resource_name = "lootbox"
+length = 2.0
+step = 0.033
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../LootboxPopup/TextureRect:size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.433333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 128)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../LootboxPopup/TextureRect:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.433333, 0.8, 0.866667, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("10_qy1jj"), ExtResource("11_2rd6h"), ExtResource("12_7ua8r"), ExtResource("13_r7sob")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../LootboxPopup/TextureRect:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.966667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(4.5, 4.5), Vector2(4, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../LootboxPopup/TextureRect:position")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.433333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1088, 584), Vector2(1068, 584), Vector2(1108, 584), Vector2(1068, 584), Vector2(1108, 584), Vector2(1068, 584), Vector2(1108, 584), Vector2(1068, 584), Vector2(1108, 584), Vector2(1068, 584), Vector2(1108, 584), Vector2(1088, 584)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../LootboxPopup/Item:scale")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.433333, 1.16667, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(7, 7), Vector2(6, 6)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../LootboxPopup/YouGotALabel:scale")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.433333, 0.933333, 0.966667),
+"transitions": PackedFloat32Array(1, 0.63728, 0.329877),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(11, 11), Vector2(10, 10)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../LootboxPopup/YouGotALabel:position")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.433333, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(902, 636.5), Vector2(902, 200)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../LootboxPopup/CPS:scale")
+tracks/7/interp = 2
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.433333, 0.933333, 0.966667),
+"transitions": PackedFloat32Array(1, 0.63728, 0.329877),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 5), Vector2(4, 4)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../LootboxPopup/CPS:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.433333, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(902, 636.5), Vector2(902, 300)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../LootboxPopup/OK:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../LootboxPopup/TextureRect:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qy1jj"]
+_data = {
+&"RESET": SubResource("Animation_qy1jj"),
+&"arrows_moving": SubResource("Animation_g4kob"),
+&"lootbox": SubResource("Animation_3xj3m")
+}
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_2rd6h"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -99,6 +434,17 @@ volume_db = 18.11
 [node name="Background" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_cpr0p")
 parameters/looping = true
+
+[node name="CPS" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_right = 334.0
+grow_vertical = 0
+text = "0.0 clicks per second"
+label_settings = SubResource("LabelSettings_y5y3l")
 
 [node name="NOTSPON" type="Label" parent="."]
 layout_mode = 1
@@ -168,3 +514,164 @@ text = "5"
 label_settings = SubResource("LabelSettings_kiw3p")
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="Lootbox" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -318.0
+offset_top = -373.0
+offset_right = -62.0
+offset_bottom = -117.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("7_kiw3p")
+
+[node name="TextureRect2" type="TextureRect" parent="Lootbox"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+texture = ExtResource("8_g4kob")
+
+[node name="TextureRect3" type="TextureRect" parent="Lootbox"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 0
+texture = ExtResource("9_qy1jj")
+flip_h = true
+
+[node name="TextureRect" type="TextureRect" parent="Lootbox"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("9_qy1jj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Lootbox"]
+libraries = {
+&"": SubResource("AnimationLibrary_qy1jj")
+}
+autoplay = "arrows_moving"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="LootboxPopup" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="LootboxPopup"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="LootboxPopup"]
+custom_minimum_size = Vector2(576, 576)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("10_qy1jj")
+
+[node name="Item" type="TextureRect" parent="LootboxPopup"]
+custom_minimum_size = Vector2(40, 40)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -28.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+texture = SubResource("PlaceholderTexture2D_2rd6h")
+
+[node name="YouGotALabel" type="Label" parent="LootboxPopup"]
+custom_minimum_size = Vector2(500, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -11.5
+offset_right = 250.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(250, 11.5)
+text = "You got a <Placeholder>!"
+label_settings = ExtResource("14_7ua8r")
+horizontal_alignment = 1
+
+[node name="CPS" type="Label" parent="LootboxPopup"]
+custom_minimum_size = Vector2(500, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -11.5
+offset_right = 250.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(250, 11.5)
+text = "x clicks per second"
+label_settings = ExtResource("14_7ua8r")
+horizontal_alignment = 1
+
+[node name="OK" type="Button" parent="LootboxPopup"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = 352.0
+offset_right = 86.0
+offset_bottom = 444.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ibkli")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = ExtResource("15_r7sob")
+theme_override_styles/hover_pressed = ExtResource("15_r7sob")
+theme_override_styles/hover = ExtResource("15_r7sob")
+theme_override_styles/pressed = ExtResource("15_r7sob")
+theme_override_styles/normal = ExtResource("15_r7sob")
+text = "OK"

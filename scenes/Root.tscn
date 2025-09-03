@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://lwk21bgyu8g1"]
+[gd_scene load_steps=6 format=3 uid="uid://lwk21bgyu8g1"]
 
 [ext_resource type="PackedScene" uid="uid://dnnka5th1gldj" path="res://scenes/Dialog.tscn" id="1_1bxvr"]
 [ext_resource type="Script" uid="uid://c55jcsmfwvrfs" path="res://scripts/root.gd" id="1_m7djw"]
 [ext_resource type="LabelSettings" uid="uid://dk2wkwyjhrjcg" path="res://font.tres" id="3_t5xp5"]
 [ext_resource type="PackedScene" uid="uid://64xji1dgog3m" path="res://scenes/Intro.tscn" id="5_5npxh"]
-[ext_resource type="AudioStream" uid="uid://p55pa4dol07g" path="res://assets/debt.ogg" id="5_ont70"]
 [ext_resource type="PackedScene" uid="uid://c6e85mo505ud1" path="res://scenes/Game.tscn" id="6_5npxh"]
 
 [node name="Root" type="Control"]
@@ -15,9 +14,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m7djw")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_ont70")
 
 [node name="Intro" parent="." instance=ExtResource("5_5npxh")]
 layout_mode = 1
@@ -47,7 +43,7 @@ grow_horizontal = 0
 
 [node name="Limit and Debt" type="Label" parent="HBoxContainer"]
 layout_mode = 2
-text = "Card Limit: 7000 $$$  Debt:"
+text = "Card Limit: 100 $$$  Debt:"
 label_settings = ExtResource("3_t5xp5")
 
 [node name="Label" type="Label" parent="HBoxContainer"]

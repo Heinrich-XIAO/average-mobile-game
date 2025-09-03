@@ -3,9 +3,10 @@ extends Control
 
 func _debt_changed(value):
 	$HBoxContainer/Label.text = str(value) + " $$$"
-	$AudioStreamPlayer.play()
+	$Dialog/Chaching.play()
 
 func _game_starts():
+	$Intro.hide()
 	$Game.show()
 	$Game/Background.play()
 

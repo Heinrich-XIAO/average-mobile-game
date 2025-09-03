@@ -33,7 +33,6 @@ func _ready():
 
 	open_button.connect("gui_input", func (event):
 		if event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			print("opened")
 			Globals.bought_game_state = true
 	)
 

@@ -7,19 +7,23 @@ var is_going_brrr: bool = false
 var can_run_next_dialog: bool = false
 var is_next_dialog: bool = false
 var next_callback: Callable = Callable()
+var can_skip: bool = true
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		if is_going_brrr:
+		if is_going_brrr and can_skip:
 			is_going_brrr = false
 		elif is_next_dialog:
 			can_run_next_dialog = true
 		else:
-			next_callback.call()
+			if is_going_brrr and not can_skip:
+				return
 			close_dialog()
+			next_callback.call()
 		
 func close_dialog():
 	panel.hide()
+	$Buy.hide()
 
 func send_dialog(text, pfp):
 	self.show()
@@ -46,9 +50,10 @@ func send_dialog(text, pfp):
 	$TypingSFX.stop()
 
 	
-func send_multiple_dialogs(texts: Array, pfp, callback: Callable = func (): pass):
+func send_multiple_dialogs(texts: Array, pfp, callback: Callable = func (): pass, skippable=true):
 	panel.show()
-	print("adsf")
+	$Buy.hide()
+	can_skip = skippable
 	for i in range(len(texts)):
 		var text = texts[i]
 		if i < len(texts) - 1:
@@ -58,10 +63,23 @@ func send_multiple_dialogs(texts: Array, pfp, callback: Callable = func (): pass
 		await send_dialog(text, pfp)
 		while not can_run_next_dialog:
 			await get_tree().create_timer(0.02).timeout
-	next_callback = callback
+	next_callback = func ():
+		callback.call()
+		next_callback = func (): pass
+
+func sell(dialog, pfp, callback: Callable = func (): pass, skippable = false):
+	panel.show()
+	#$Buy.show()
+	can_skip = skippable
+	send_dialog(dialog, pfp)
+	next_callback = func ():
+		$Chaching.play()
+		callback.call()
+		next_callback = func (): pass
 
 func _ready():
 	Globals.connect("send_dialog_signal", self.send_multiple_dialogs)
+	Globals.connect("send_sell_signal", self.sell)
 
 	dialog_image = $PanelContainer/MarginContainer/HBoxContainer/TextureRect
 	dialog_label = $PanelContainer/MarginContainer/HBoxContainer/Label
