@@ -1,5 +1,9 @@
 extends Control
 
+@onready var trump: CompressedTexture2D = load("res://images/trump.png")
+
+var has_pressed_open: bool = false
+
 func button_animation(button: Button):
 	var tween = create_tween()
 	button.pivot_offset = button.size / 2
@@ -8,7 +12,6 @@ func button_animation(button: Button):
 		tween.set_trans(Tween.TRANS_SINE)
 		tween.tween_property(button, "scale", Vector2.ONE * 1.05, 0.5)
 		tween.tween_property(button, "scale", Vector2.ONE, 0.5)
-
 
 func _ready():
 	var buy_button = $Panel/Buy
@@ -32,8 +35,12 @@ func _ready():
 	)
 
 	open_button.connect("gui_input", func (event):
-		if event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			Globals.bought_game_state = true
+		if event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT and not has_pressed_open:
+			Globals.send_dialog(["Your goal is to get to %s clicks in 30 seconds. Countdown starts when you click." % str(int(Globals.click_goal))], trump, true, func ():
+				Globals.bought_game_state = true
+			)
+			has_pressed_open = true
+			
 	)
 
 	button_animation(buy_button)
