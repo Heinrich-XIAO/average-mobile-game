@@ -11,12 +11,10 @@ var can_skip: bool = true
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		print(is_going_brrr, " ", can_skip, " ", is_next_dialog)
 		if is_going_brrr and can_skip:
 			is_going_brrr = false
 		elif is_next_dialog:
 			can_run_next_dialog = true
-			print("set true")
 		else:
 			if is_going_brrr and not can_skip:
 				return
@@ -78,7 +76,6 @@ func send_multiple_dialogs(texts: Array, pfp, callback: Callable = func (): pass
 			await get_tree().process_frame
 		
 		can_run_next_dialog = false
-		print("set to false")
 
 func sell(dialog, pfp, callback: Callable = func (): pass, skippable = false):
 	panel.show()
