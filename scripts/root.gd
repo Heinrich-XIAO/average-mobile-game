@@ -14,6 +14,7 @@ func _debt_limit_changed(value):
 func _game_starts():
 	$Intro.hide()
 	$Game.show()
+	$Game.shown()
 	$Game/Background.play()
 
 func _ready():

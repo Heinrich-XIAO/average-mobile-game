@@ -52,7 +52,6 @@ func send_dialog(text, pfp):
 	is_going_brrr = false
 	$TypingSFX.stop()
 
-	
 func send_multiple_dialogs(texts: Array, pfp, callback: Callable = func (): pass, skippable=true):
 	panel.show()
 	$Buy.hide()

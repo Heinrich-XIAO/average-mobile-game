@@ -4,6 +4,8 @@ signal debt_changed(newvalue)
 signal debt_increased(newvalue)
 var debt: int = 0 : set = set_debt
 
+var total_spent: int = 0
+
 signal debt_limit_changed(newvalue)
 var debt_limit: int = 100 : set = set_debt_limit
 var click_goal: float = 100
@@ -21,6 +23,7 @@ func set_debt_limit(value):
 func set_debt(value):
 	if debt < value:
 		emit_signal("debt_increased", value)
+		total_spent += value - debt
 	debt = value
 	emit_signal("debt_changed", value)
 

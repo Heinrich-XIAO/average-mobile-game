@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://lwk21bgyu8g1"]
+[gd_scene load_steps=9 format=3 uid="uid://lwk21bgyu8g1"]
 
 [ext_resource type="PackedScene" uid="uid://dnnka5th1gldj" path="res://scenes/Dialog.tscn" id="1_1bxvr"]
 [ext_resource type="Script" uid="uid://c55jcsmfwvrfs" path="res://scripts/root.gd" id="1_m7djw"]
 [ext_resource type="LabelSettings" uid="uid://dk2wkwyjhrjcg" path="res://font.tres" id="3_t5xp5"]
 [ext_resource type="PackedScene" uid="uid://64xji1dgog3m" path="res://scenes/Intro.tscn" id="5_5npxh"]
 [ext_resource type="PackedScene" uid="uid://c6e85mo505ud1" path="res://scenes/Game.tscn" id="6_5npxh"]
+[ext_resource type="Shader" uid="uid://b6f0rq08uti3u" path="res://scenes/Root.gdshader" id="6_c618l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0x7h0"]
+shader = ExtResource("6_c618l")
+shader_parameter/color_offset = 0.002
+
+[sub_resource type="QuadMesh" id="QuadMesh_3wcpb"]
+size = Vector2(2304, 1296)
+center_offset = Vector3(1152, 648, 0)
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -38,7 +47,7 @@ anchor_right = 1.0
 offset_left = -1641.0
 offset_top = 15.0
 offset_right = -15.0
-offset_bottom = 99.0
+offset_bottom = 114.0
 grow_horizontal = 0
 
 [node name="Limit and Debt" type="Label" parent="HBoxContainer"]
@@ -53,3 +62,10 @@ size_flags_horizontal = 10
 text = "0 $$$"
 label_settings = ExtResource("3_t5xp5")
 horizontal_alignment = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_0x7h0")
+mesh = SubResource("QuadMesh_3wcpb")

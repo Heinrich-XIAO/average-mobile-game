@@ -37,6 +37,7 @@ func _ready():
 	open_button.connect("gui_input", func (event):
 		if event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT and not has_pressed_open:
 			Globals.send_dialog(["Your goal is to get to %s clicks in 30 seconds. Countdown starts when you click." % str(int(Globals.click_goal))], trump, true, func ():
+				await Fade.fade_out(1.0, Color.BLACK, "Diamond").finished
 				Globals.bought_game_state = true
 			)
 			has_pressed_open = true

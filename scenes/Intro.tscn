@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://64xji1dgog3m"]
+[gd_scene load_steps=13 format=3 uid="uid://64xji1dgog3m"]
 
 [ext_resource type="Script" uid="uid://lgxvg6cegl2a" path="res://scripts/phone.gd" id="1_ywiat"]
 [ext_resource type="FontFile" uid="uid://c42lwm6ec4n06" path="res://Minecraft.ttf" id="2_mkji7"]
 [ext_resource type="StyleBox" uid="uid://bgk74gardftf2" path="res://downloading_game.tres" id="3_capyo"]
 [ext_resource type="StyleBox" uid="uid://btmlfjuc6cbf7" path="res://buy_game.tres" id="4_b2a04"]
+[ext_resource type="Shader" uid="uid://ccmiebd0ukehv" path="res://scenes/camera.gdshader" id="5_capyo"]
 [ext_resource type="Texture2D" uid="uid://cw41tnsipb0go" path="res://images/camera.png" id="5_mkji7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5lxn"]
@@ -29,6 +30,11 @@ corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b2a04"]
+shader = ExtResource("5_capyo")
+shader_parameter/radius = 0.1
+shader_parameter/offset = Vector2(-0.01, 0.01)
 
 [sub_resource type="LabelSettings" id="LabelSettings_t5lxn"]
 font = ExtResource("2_mkji7")
@@ -196,7 +202,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mkji7")
 
 [node name="Camera" type="Sprite2D" parent="Panel"]
 z_index = 11
-position = Vector2(2114, 540)
+material = SubResource("ShaderMaterial_b2a04")
+position = Vector2(2113, 541)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_mkji7")
 
 [node name="Label" type="Label" parent="."]

@@ -7,10 +7,10 @@ var total_cps: float = 0 : set = set_total_cps
 var start_time: float = 30
 var time: float = start_time
 
+var can_start_time:bool = false
+
 var level_number: int = 0
-
 var won: bool = false
-
 var previous_loot: String = ""
 
 @onready var trump : CompressedTexture2D = load("res://images/trump.png")
@@ -123,7 +123,7 @@ func open_lootbox():
 func _process(delta):
 	count += delta * total_cps
 	
-	if self.visible and not $Congrats.visible and time > 0:
+	if self.visible and not $Congrats.visible and time > 0 and can_start_time:
 		time -= delta
 		$stopwatch.text = str(int(time-floor(time/60)*60))\
 		+"." + str(int(time*100-floor(time)*100)).pad_zeros(2)
@@ -142,18 +142,26 @@ func reset_level(current_level: int):
 	var current_level_data = level_data[current_level]
 	Globals.debt_limit = current_level_data["debt_limit"]
 	
-	var prev_click_goal = Globals.click_goal
-	print(Globals.click_goal)
 	Globals.click_goal = current_level_data["click_goal"]
 	start_time = current_level_data["start_time"]
 	
-	print(prev_click_goal, Globals.click_goal)
-	if prev_click_goal != Globals.click_goal:
-		Globals.send_dialog(["Your goal is now %s. Click when you are ready." % str(int(Globals.click_goal))], trump, false, func ():
+	if won:
+		Globals.send_dialog(["Your goal is now %s in %s seconds and your limit has been changed to %s. Click when you are ready." % [str(int(Globals.click_goal)), str(int(start_time)), str(int(Globals.debt_limit))]], trump, false, func ():
 			time = start_time # Setting time to a non-zero value starts the count down
+			$Congrats.hide()
+			$LootboxPopup.hide()
 		)
 	else:
 		time = start_time
+
+func fade_out_audio(player: AudioStreamPlayer, duration: float = 1.5):
+	var tween = create_tween()
+	tween.tween_property(player, "volume_db", -80.0, duration) # -80 dB = silent
+
+func shown():
+	$stopwatch.text = "30.00Q"
+	await Fade.fade_in(1.0, Color.BLACK, "Diamond").finished
+	can_start_time = true
 
 func _ready() -> void:
 	$HBoxContainer/MarginContainer/Energy.text = str(energy)
@@ -174,19 +182,20 @@ func _ready() -> void:
 		if event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			$Congrats.hide()
 			$LootboxPopup.hide()
-			count = 0
-			energy = 5
-			total_cps = 0
-			Globals.debt = 0
-			
+			time = 0
 			if won:
 				level_number += 1
 				
 				if level_number == len(level_data):
-					Globals.send_dialog(["We saw some suspicious activity on your account, so we'll be closing it."], shiba_bank, false, func ():
+					Globals.send_dialog(["Suspicious transactions have been found on your account worth %s $$$." % str(Globals.total_spent), "We have frozen your card."], shiba_bank, false, func ():
 						Fade.fade_out(3)
+						fade_out_audio($Background)
 					)
 					return
+			count = 0
+			energy = 5
+			total_cps = 0
+			Globals.debt = 0
 			reset_level(level_number)
 	)
 	
