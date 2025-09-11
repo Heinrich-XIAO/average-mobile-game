@@ -25,6 +25,8 @@ func _ready():
 	
 	$HBoxContainer.hide()
 	
+	Globals.shader_overlay = $CanvasLayer/MeshInstance2D
+	
 	
 	var dialog = $Dialog
 	var image: CompressedTexture2D = load("res://images/shiba_bank.png")
@@ -39,3 +41,16 @@ func _ready():
 		tween.tween_property($Intro, "position", center_pos, 1.0)
 		$HBoxContainer.show()
 	)
+	
+	
+	$Settings.gui_input.connect(func (event):
+		if event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			$Settings/CanvasLayer.show()
+	)
+	
+	
+	$Settings/CanvasLayer/Panel/OK.gui_input.connect(func (event):
+		if event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			$Settings/CanvasLayer.hide()
+	)
+	

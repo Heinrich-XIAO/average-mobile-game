@@ -6,6 +6,8 @@ var debt: int = 0 : set = set_debt
 
 var total_spent: int = 0
 
+var shader_overlay
+
 signal debt_limit_changed(newvalue)
 var debt_limit: int = 100 : set = set_debt_limit
 var click_goal: float = 100

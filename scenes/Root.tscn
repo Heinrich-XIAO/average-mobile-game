@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://lwk21bgyu8g1"]
+[gd_scene load_steps=16 format=3 uid="uid://lwk21bgyu8g1"]
 
 [ext_resource type="PackedScene" uid="uid://dnnka5th1gldj" path="res://scenes/Dialog.tscn" id="1_1bxvr"]
 [ext_resource type="Script" uid="uid://c55jcsmfwvrfs" path="res://scripts/root.gd" id="1_m7djw"]
@@ -6,14 +6,24 @@
 [ext_resource type="PackedScene" uid="uid://64xji1dgog3m" path="res://scenes/Intro.tscn" id="5_5npxh"]
 [ext_resource type="PackedScene" uid="uid://c6e85mo505ud1" path="res://scenes/Game.tscn" id="6_5npxh"]
 [ext_resource type="Shader" uid="uid://b6f0rq08uti3u" path="res://scenes/Root.gdshader" id="6_c618l"]
+[ext_resource type="Texture2D" uid="uid://y7mdib5trrq2" path="res://images/settings.png" id="7_c618l"]
+[ext_resource type="Texture2D" uid="uid://cerfqsk83s4ty" path="res://circle.tres" id="8_0x7h0"]
+[ext_resource type="Script" uid="uid://cuxlanxjsrxdy" path="res://scenes/volume.gd" id="8_3wcpb"]
+[ext_resource type="FontFile" uid="uid://c42lwm6ec4n06" path="res://Minecraft.ttf" id="10_6w1so"]
+[ext_resource type="StyleBox" uid="uid://i8wxiocywuwd" path="res://scenes/okay.tres" id="11_q7e4n"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0x7h0"]
 shader = ExtResource("6_c618l")
-shader_parameter/color_offset = 0.002
+shader_parameter/colour_offset = 0.002
+shader_parameter/power_off = 1.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_3wcpb"]
 size = Vector2(2304, 1296)
 center_offset = Vector3(1152, 648, 0)
+
+[sub_resource type="GDScript" id="GDScript_3wcpb"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3wcpb"]
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -69,3 +79,97 @@ layer = 128
 [node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_0x7h0")
 mesh = SubResource("QuadMesh_3wcpb")
+
+[node name="Settings" type="TextureButton" parent="."]
+z_index = 4095
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 82.0
+offset_top = -216.0
+offset_right = 986.0
+offset_bottom = 688.0
+grow_vertical = 0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("7_c618l")
+texture_pressed = ExtResource("7_c618l")
+texture_hover = ExtResource("7_c618l")
+texture_disabled = ExtResource("7_c618l")
+texture_focused = ExtResource("7_c618l")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Settings"]
+layer = 11
+visible = false
+
+[node name="Panel" type="Panel" parent="Settings/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Settings/CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.5
+offset_top = -32.0
+offset_right = 252.5
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_3wcpb")
+
+[node name="Label" type="Label" parent="Settings/CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "Volume: "
+label_settings = ExtResource("3_t5xp5")
+
+[node name="HSlider" type="HSlider" parent="Settings/CanvasLayer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("8_0x7h0")
+theme_override_icons/grabber_highlight = ExtResource("8_0x7h0")
+theme_override_icons/grabber_disabled = ExtResource("8_0x7h0")
+theme_override_icons/tick = SubResource("PlaceholderTexture2D_3wcpb")
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("8_3wcpb")
+
+[node name="percentage" type="Label" parent="Settings/CanvasLayer/Panel/HBoxContainer"]
+layout_mode = 2
+text = "100%"
+label_settings = ExtResource("3_t5xp5")
+
+[node name="OK" type="Button" parent="Settings/CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = 152.0
+offset_right = 86.0
+offset_bottom = 244.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("10_6w1so")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/focus = ExtResource("11_q7e4n")
+theme_override_styles/hover_pressed = ExtResource("11_q7e4n")
+theme_override_styles/hover = ExtResource("11_q7e4n")
+theme_override_styles/pressed = ExtResource("11_q7e4n")
+theme_override_styles/normal = ExtResource("11_q7e4n")
+text = "OK"
+
+[connection signal="mouse_exited" from="Settings/CanvasLayer/Panel/HBoxContainer/HSlider" to="Settings/CanvasLayer/Panel/HBoxContainer/HSlider" method="_on_mouse_exited"]
+[connection signal="value_changed" from="Settings/CanvasLayer/Panel/HBoxContainer/HSlider" to="Settings/CanvasLayer/Panel/HBoxContainer/HSlider" method="_on_value_changed"]

@@ -146,7 +146,7 @@ func reset_level(current_level: int):
 	start_time = current_level_data["start_time"]
 	
 	if won:
-		Globals.send_dialog(["Your goal is now %s in %s seconds and your limit has been changed to %s. Click when you are ready." % [str(int(Globals.click_goal)), str(int(start_time)), str(int(Globals.debt_limit))]], trump, false, func ():
+		Globals.send_dialog(["Your goal is now %s in %s seconds and your card limit has been changed to %s. Click when you are ready." % [str(int(Globals.click_goal)), str(int(start_time)), str(int(Globals.debt_limit))]], trump, false, func ():
 			time = start_time # Setting time to a non-zero value starts the count down
 			$Congrats.hide()
 			$LootboxPopup.hide()
@@ -159,7 +159,7 @@ func fade_out_audio(player: AudioStreamPlayer, duration: float = 1.5):
 	tween.tween_property(player, "volume_db", -80.0, duration) # -80 dB = silent
 
 func shown():
-	$stopwatch.text = "30.00Q"
+	$stopwatch.text = "30.00"
 	await Fade.fade_in(1.0, Color.BLACK, "Diamond").finished
 	can_start_time = true
 
@@ -188,8 +188,9 @@ func _ready() -> void:
 				
 				if level_number == len(level_data):
 					Globals.send_dialog(["Suspicious transactions have been found on your account worth %s $$$." % str(Globals.total_spent), "We have frozen your card."], shiba_bank, false, func ():
-						Fade.fade_out(3)
-						fade_out_audio($Background)
+						var tween = create_tween()
+						tween.tween_property(Globals.shader_overlay.material, "shader_parameter/power_off", 0.0, 1.0).from(1.0)
+						fade_out_audio($Background, 5)
 					)
 					return
 			count = 0
