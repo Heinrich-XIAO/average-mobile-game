@@ -123,7 +123,7 @@ func open_lootbox():
 func _process(delta):
 	count += delta * total_cps
 	
-	if self.visible and not $Congrats.visible and time > 0 and can_start_time:
+	if self.visible and not $Congrats.visible and time > 0 and can_start_time and not Globals.is_dialog_shown():
 		time -= delta
 		$stopwatch.text = str(int(time-floor(time/60)*60))\
 		+"." + str(int(time*100-floor(time)*100)).pad_zeros(2)
@@ -146,7 +146,7 @@ func reset_level(current_level: int):
 	start_time = current_level_data["start_time"]
 	
 	if won:
-		Globals.send_dialog(["Your goal is now %s in %s seconds and your card limit has been changed to %s. Click when you are ready." % [str(int(Globals.click_goal)), str(int(start_time)), str(int(Globals.debt_limit))]], trump, false, func ():
+		Globals.send_dialog(["Your goal is now %s in %s seconds and your card limit has been changed to %s. Click when you are ready." % [str(int(Globals.click_goal)), str(int(start_time)), str(int(Globals.debt_limit))]], trump, true, func ():
 			time = start_time # Setting time to a non-zero value starts the count down
 			$Congrats.hide()
 			$LootboxPopup.hide()
@@ -176,6 +176,9 @@ func _ready() -> void:
 	$LootboxPopup/OK.gui_input.connect(func (event):
 		if event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			$LootboxPopup.hide()
+			$Lootbox/TextureRect.hide()
+			$Lootbox/TextureRect2.hide()
+			$Lootbox/TextureRect3.hide()
 	)
 	
 	$Congrats/OK.gui_input.connect(func (event):
@@ -187,7 +190,7 @@ func _ready() -> void:
 				level_number += 1
 				
 				if level_number == len(level_data):
-					Globals.send_dialog(["Suspicious transactions have been found on your account worth %s $$$." % str(Globals.total_spent), "We have frozen your card."], shiba_bank, false, func ():
+					Globals.send_dialog(["Suspicious transactions have been found on your account worth %s $$$." % str(Globals.total_spent), "We have frozen your card."], shiba_bank, true, func ():
 						var tween = create_tween()
 						tween.tween_property(Globals.shader_overlay.material, "shader_parameter/power_off", 0.0, 1.0).from(1.0)
 						fade_out_audio($Background, 5)

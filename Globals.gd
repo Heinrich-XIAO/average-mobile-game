@@ -8,6 +8,8 @@ var total_spent: int = 0
 
 var shader_overlay
 
+var root_element: Control = null
+
 signal debt_limit_changed(newvalue)
 var debt_limit: int = 100 : set = set_debt_limit
 var click_goal: float = 100
@@ -34,6 +36,9 @@ func inc_debt(value):
 		return false
 	debt += value
 	return true
+
+func is_dialog_shown():
+	return root_element.get_node("Dialog").visible
 
 func send_dialog(dialog: Array[String], pfp: Texture2D, skippable: bool = true, callable: Callable = func(): pass):
 	emit_signal("send_dialog_signal", dialog, pfp, callable, skippable)

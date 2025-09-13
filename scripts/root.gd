@@ -23,6 +23,8 @@ func _ready():
 	Globals.connect("debt_limit_changed", self._debt_limit_changed)
 	Globals.connect("bought_game", self._game_starts)
 	
+	Globals.root_element = self
+	
 	$HBoxContainer.hide()
 	
 	Globals.shader_overlay = $CanvasLayer/MeshInstance2D

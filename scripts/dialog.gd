@@ -23,6 +23,7 @@ func _input(event):
 		
 func close_dialog():
 	panel.hide()
+	self.hide()
 	$Buy.hide()
 
 func send_dialog(text, pfp):
