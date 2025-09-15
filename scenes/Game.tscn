@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cllhm2ckcrbdb" path="res://scenes/game.gd" id="1_s0nni"]
 [ext_resource type="StyleBox" uid="uid://cons8p27lgekx" path="res://start.tres" id="2_qbsmt"]
 [ext_resource type="AudioStream" uid="uid://cfyvi4elmnnqw" path="res://assets/bgmusic.mp3" id="3_cpr0p"]
-[ext_resource type="AudioStream" uid="uid://cmccnl5c7xouu" path="res://assets/Woosh.mp3" id="4_aug50"]
+[ext_resource type="AudioStream" uid="uid://csr0xo7eacnga" path="res://assets/whoosh.mp3" id="4_y5y3l"]
 [ext_resource type="Texture2D" uid="uid://d1if1hm2tbcxw" path="res://images/energy.png" id="6_aug50"]
 [ext_resource type="Texture2D" uid="uid://b4xh8boa3hk80" path="res://images/chest.png" id="7_kiw3p"]
 [ext_resource type="Texture2D" uid="uid://cmik53j7cupct" path="res://images/arrow_down.png" id="8_g4kob"]
@@ -18,7 +18,7 @@
 [ext_resource type="FontFile" uid="uid://brfed2eds4tl4" path="res://mono_font.ttf" id="16_y5y3l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbsmt"]
-bg_color = Color(0, 0, 0, 1)
+bg_color = Color(0.23683, 0.431248, 0.562394, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qbsmt"]
 font = ExtResource("1_ibkli")
@@ -477,11 +477,12 @@ theme_override_styles/normal = ExtResource("2_qbsmt")
 text = "Click"
 
 [node name="Whoosh" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_aug50")
-volume_db = 18.11
+stream = ExtResource("4_y5y3l")
+volume_db = 24.0
 
 [node name="Background" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_cpr0p")
+volume_db = -22.26
 parameters/looping = true
 
 [node name="CPS" type="Label" parent="."]

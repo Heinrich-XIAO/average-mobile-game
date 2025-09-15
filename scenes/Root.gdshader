@@ -9,7 +9,7 @@ uniform float power_off : hint_range(0.0, 1.0) = 1.0;
 uniform sampler2D screen_texture : hint_screen_texture, filter_linear_mipmap;
 
 void fragment() {
-    vec2 centered_uv = SCREEN_UV * 2.0 - 1.0;
+    vec2 centered_uv = (SCREEN_UV * 2.0 - 1.0) * 1.05;
     vec2 uv_offset = centered_uv.yx / curvature;
     vec2 warped_uv = centered_uv + centered_uv * uv_offset * uv_offset;
     vec2 base_uv = (warped_uv + 1.0) / 2.0;

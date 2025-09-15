@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://lwk21bgyu8g1"]
+[gd_scene load_steps=17 format=3 uid="uid://lwk21bgyu8g1"]
 
 [ext_resource type="PackedScene" uid="uid://dnnka5th1gldj" path="res://scenes/Dialog.tscn" id="1_1bxvr"]
 [ext_resource type="Script" uid="uid://c55jcsmfwvrfs" path="res://scripts/root.gd" id="1_m7djw"]
@@ -11,6 +11,9 @@
 [ext_resource type="Script" uid="uid://cuxlanxjsrxdy" path="res://scenes/volume.gd" id="8_3wcpb"]
 [ext_resource type="FontFile" uid="uid://c42lwm6ec4n06" path="res://Minecraft.ttf" id="10_6w1so"]
 [ext_resource type="StyleBox" uid="uid://i8wxiocywuwd" path="res://scenes/okay.tres" id="11_q7e4n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6w1so"]
+bg_color = Color(0, 0.427569, 0.70517, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0x7h0"]
 shader = ExtResource("6_c618l")
@@ -33,6 +36,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_m7djw")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6w1so")
 
 [node name="Intro" parent="." instance=ExtResource("5_5npxh")]
 layout_mode = 1
@@ -81,7 +93,7 @@ material = SubResource("ShaderMaterial_0x7h0")
 mesh = SubResource("QuadMesh_3wcpb")
 
 [node name="Settings" type="TextureButton" parent="."]
-z_index = 4095
+z_index = 4096
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 1
 anchors_preset = 2

@@ -22,6 +22,10 @@ corner_radius_top_right = 150
 corner_radius_bottom_right = 150
 corner_radius_bottom_left = 150
 
+[sub_resource type="LabelSettings" id="LabelSettings_t5lxn"]
+font = ExtResource("2_mkji7")
+font_size = 128
+
 [sub_resource type="Theme" id="Theme_ywiat"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mkji7"]
@@ -35,10 +39,6 @@ corner_radius_bottom_left = 50
 shader = ExtResource("5_capyo")
 shader_parameter/radius = 0.1
 shader_parameter/offset = Vector2(-0.01, 0.01)
-
-[sub_resource type="LabelSettings" id="LabelSettings_t5lxn"]
-font = ExtResource("2_mkji7")
-font_size = 128
 
 [node name="Intro" type="Control"]
 custom_minimum_size = Vector2(0, 1000)
@@ -54,7 +54,7 @@ grow_vertical = 2
 script = ExtResource("1_ywiat")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-z_index = -1
+z_index = 4094
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -69,6 +69,7 @@ pivot_offset = Vector2(30, 6)
 theme_override_styles/panel = SubResource("StyleBoxFlat_t5lxn")
 
 [node name="Panel" type="Panel" parent="."]
+z_index = 4095
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -80,6 +81,34 @@ offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ywiat")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 116.0
+offset_right = 1132.0
+offset_bottom = 375.0
+text = "Shaid Radow Clicker"
+label_settings = SubResource("LabelSettings_t5lxn")
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -925.0
+offset_top = -202.0
+offset_right = -505.0
+offset_bottom = -74.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "5 $$$"
+label_settings = SubResource("LabelSettings_t5lxn")
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Downloads" type="Button" parent="Panel"]
 visible = false
@@ -203,34 +232,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_mkji7")
 [node name="Camera" type="Sprite2D" parent="Panel"]
 z_index = 11
 material = SubResource("ShaderMaterial_b2a04")
-position = Vector2(2113, 541)
+position = Vector2(2109, 542)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_mkji7")
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 154.0
-offset_top = 166.0
-offset_right = 1182.0
-offset_bottom = 425.0
-text = "Shaid Radow Clicker"
-label_settings = SubResource("LabelSettings_t5lxn")
-autowrap_mode = 2
-
-[node name="Label2" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -975.0
-offset_top = -202.0
-offset_right = -555.0
-offset_bottom = -74.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "5 $$$"
-label_settings = SubResource("LabelSettings_t5lxn")
-horizontal_alignment = 1
-autowrap_mode = 2

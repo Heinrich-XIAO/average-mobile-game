@@ -17,7 +17,7 @@ func _ready():
 	var buy_button = $Panel/Buy
 	var open_button = $Panel/Open
 	$PanelContainer.mouse_filter = Control.MOUSE_FILTER_IGNORE
-
+	
 	buy_button.connect("gui_input", func (event):
 		if event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			Globals.debt += 5

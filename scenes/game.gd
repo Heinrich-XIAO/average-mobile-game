@@ -19,22 +19,44 @@ var previous_loot: String = ""
 	"cursor": {
 		"enabled": true,
 		"texture": load("res://images/cursor.png"),
-		"cps": 1.0,
 		"display_name": "cursor",
-		"caption": "1 click per second",
+		"caption": "0.5 clicks per second",
 		"pre-display": func (): pass,
+		"used": 0,
+		"guaranteed": false,
+		"weight": 1000.0,
 		"callback": func ():
-	total_cps += 1
+	total_cps += 0.5
 	loot_items["gamer"]["enabled"] = true
 	},
 	"gamer": {
 		"enabled": false,
 		"texture": load("res://images/average_gamer.png"),
-		"cps": 10.0,
 		"display_name": "gamer kid",
+		"caption": "5 clicks per second",
+		"pre-display": func (): pass,
+		"used": 0,
+		"guaranteed": true,
+		"weight": 200.0,
+		"callback": func ():
+	total_cps += 5
+	if loot_items["gamer"]["used"] >= 2:
+		loot_items["billionaire"]["enabled"] = true
+		loot_items["billionaire"]["guaranteed"] = true
+	},
+	"billionaire": {
+		"enabled": false,
+		"texture": load("res://images/trump.png"),
+		"display_name": "rich billionaire",
 		"caption": "10 clicks per second",
 		"pre-display": func (): pass,
-		"callback": func (): total_cps += 10
+		"used": 0,
+		"guaranteed": false,
+		"weight": 100.0,
+		"callback": func ():
+	total_cps += 10
+	loot_items["gamer"]["guaranteed"] = false
+	loot_items["billionaire"]["guaranteed"] = false
 	}
 }
 
@@ -90,34 +112,49 @@ func open_lootbox():
 		return
 	
 	var enabled_loot := {}
-
 	for key in loot_items:
 		var item = loot_items[key]
 		if item["enabled"]:
 			enabled_loot[key] = item
 	
-	var keys = enabled_loot.keys()
-	var random_key = keys[randi() % keys.size()]
+	var total_weight: float = 0.0
+	for key in enabled_loot:
+		total_weight += enabled_loot[key]["weight"]
 	
-	while random_key == previous_loot:
-		random_key = keys[randi() % keys.size()]
+	var random_val: float = randf() * total_weight
+	var random_key: String = ""
+	var cumulative: float = 0.0
+	
+	for key in enabled_loot:
+		cumulative += enabled_loot[key]["weight"]
+		if random_val <= cumulative:
+			random_key = key
+			break
+	
+	while random_key == previous_loot and enabled_loot.size() > 1:
+		random_val = randf() * total_weight
+		cumulative = 0.0
+		for key in enabled_loot:
+			cumulative += enabled_loot[key]["weight"]
+			if random_val <= cumulative:
+				random_key = key
+				break
 	
 	previous_loot = random_key
-	
 	var loot_item = enabled_loot[random_key]
 	
-	
+	for key in loot_items:
+		if loot_items[key]["guaranteed"] and loot_items[key]["enabled"]:
+			loot_item = loot_items[key]
 	
 	loot_item["pre-display"].call()
-	
 	$LootboxPopup/Item.texture = loot_item["texture"]
 	$LootboxPopup/YouGotALabel.text = "You got a %s!" % [loot_item["display_name"]]
 	$LootboxPopup/CPS.text = loot_item["caption"]
-	
 	$LootboxPopup.show()
 	$Lootbox/AnimationPlayer.play("lootbox")
+	loot_item["used"] += 1
 	await $Lootbox/AnimationPlayer.animation_finished
-	
 	loot_item["callback"].call()
 
 func _process(delta):
@@ -142,7 +179,7 @@ func reset_level(current_level: int):
 	var current_level_data = level_data[current_level]
 	Globals.debt_limit = current_level_data["debt_limit"]
 	
-	Globals.click_goal = current_level_data["click_goal"]
+	Globals.click_goal = current_level_data["click_goal"] 
 	start_time = current_level_data["start_time"]
 	
 	if won:

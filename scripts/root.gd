@@ -44,7 +44,6 @@ func _ready():
 		$HBoxContainer.show()
 	)
 	
-	
 	$Settings.gui_input.connect(func (event):
 		if event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			$Settings/CanvasLayer.show()
