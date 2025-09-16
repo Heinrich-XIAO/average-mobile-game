@@ -37,7 +37,7 @@ var previous_loot: String = ""
 		"pre-display": func (): pass,
 		"used": 0,
 		"guaranteed": true,
-		"weight": 200.0,
+		"weight": 150.0,
 		"callback": func ():
 	total_cps += 5
 	if loot_items["gamer"]["used"] >= 2:
@@ -80,7 +80,7 @@ func set_total_cps(value):
 	
 
 func woosh() -> void:
-	$Whoosh.play(0.07)
+	$Whoosh.play(0.033)
 
 func whoosh() -> void: # In case i spell it differently next time.
 	woosh()
@@ -246,7 +246,7 @@ func _ready() -> void:
 	)
 	
 	$Click.gui_input.connect(func (event):
-		if event is InputEventMouseButton and not event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			if energy <= 0:
 				return
 			self.woosh()
